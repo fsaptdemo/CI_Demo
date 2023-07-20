@@ -1,0 +1,74 @@
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #3F3B6C;
+    color: #A3C7D6;
+    margin-bottom: 24px;
+    padding: 0;
+    text-align: center;
+}
+
+a {
+    text-decoration: none;
+    color: ghostwhite;
+    transition: color 0.5s ease;
+}
+
+button {
+    margin-top: 24px;
+}
+
+form {
+    display: grid; 
+}
+
+img {
+    width: 25%;
+}
+
+label {
+    margin-top: 24px;
+}
+
+#form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+#github-button {
+    margin-top: 12px;
+}
+
+#plantCard{
+    background-color: #ad7558;
+    border: 0;
+    box-shadow: 2px 15px 20px 5px #A3C7D6;
+    color: aliceblue;
+    padding: 1rem;
+    cursor: pointer;
+    position: relative;
+    margin: 1rem auto;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+#root {
+    width: 100%;
+}
+
+.active {
+    border-bottom: 1px solid gray;
+}
+
+.nav{
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}

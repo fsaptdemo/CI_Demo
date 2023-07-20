@@ -5,7 +5,7 @@
 const { expect } = require("chai");
 
 it("true is true", () => {
-  expect(true).to.be(true);
+  expect(true).to.be.equal(true);
 });
 
 /**

@@ -3,7 +3,9 @@
  * Create a basic test to pass in the test folder
  */
 const { expect } = require("chai");
-const server = require("supertest")(require("../../index"));
+const serverFile = require("../../index");
+// const server = require("supertest")(require("../../index"));
+const server = require("supertest")(serverFile);
 const { syncAndSeed } = require("../db/index");
 
 // it("true is true", () => {
@@ -28,7 +30,7 @@ describe("/api", () => {
         .post("/api/auth/login")
         .send({ username: "user", password: "pass" });
 
-      expect(res.status).to.equal(200);
+      expect(res.status).to.equal(203);
     });
 
     it("should return welcome message and token on success", async () => {

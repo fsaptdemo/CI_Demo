@@ -1,0 +1,39 @@
+# Version of circle ci to use
+version: 2.1
+
+# A workflow is comprised of one or more uniquely named jobs. 
+jobs:
+    build-test: # name of the job
+        working_directory: ~/repo # In which directory to run the steps. Will be interpreted as an absolute path.
+        docker: # to use a circle ci pre-built docker file
+            - image: cimg/node:16.15.0 # name of the image to run --> node.js version 16.15.0
+              environment: # envrionment variables you want to be used
+                  DATABASE_URL: postgresql://postgres@localhost/ci_demo_test
+                  POSTGRES_USER: postgres
+                  POSTGRES_DB: ci_demo_test
+                  JWT_SECRET: SuPerSecRetSuPeRSafe!
+            - image: cimg/postgres:14.0 # name of the image to run --> postgres version 14.0
+              environment:
+                  POSTGRES_USER: postgres
+              auth: # auth needed for the postgres database. CirlceCi has this setup by default
+                  username: mydockerhub-user
+                  password: $DOCKERHUB_PASSWORD
+        steps: # list of steps as single key/value pairs
+            - checkout # used to checkout the code from the specified directory (working_directory)
+            - run: # key --> indicates the step type
+                  name: Install Dependencies # name of the step (not required)
+                  command: npm install # defines the command to execute at this step
+            - run: sudo apt-get update # this and the following 2 steps are needed to seet up the posgres database
+            - run: sudo apt-get install postgresql-client
+            - run:
+                  name: Add database for postgres
+                  command: psql -U postgres -h localhost -p 5432 -c "create database ci_demo_test;"
+            - run:
+                  name: Run Tests
+                  command: npm run test
+
+workflows:
+    version: 2.1
+    test:
+        jobs:
+            - build-test
